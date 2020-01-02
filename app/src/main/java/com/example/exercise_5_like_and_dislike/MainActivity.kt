@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         Log.d("MainActivity" , "onResume")
         countViewModel.countLike =
-            sharedPreferences.getInt(getString(R.string.like), 0)
+            sharedPreferences.getInt(getString(R.string.like), 0)//retrive value
         countViewModel.countDislike =
             sharedPreferences.getInt(getString(R.string.dislike), 0)
         textViewLike.text = countViewModel.countLike.toString()
@@ -55,14 +55,11 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         Log.d("MainActivity" , "onPause")
         with(sharedPreferences.edit()){
-            putInt(getString(R.string.like), countViewModel.countLike)
+            putInt(getString(R.string.like), countViewModel.countLike)//store value
             putInt(getString(R.string.dislike), countViewModel.countDislike)
             commit()
         }
         super.onPause()
-
-        //79 03 91 8-10
-        //24 46 98 10-12
     }
 
     override fun onStop() {
