@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textViewLike"
+        android:id="@+id/txtLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
@@ -20,18 +20,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageViewLike"
+        android:id="@+id/imgLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:clickable="true"
-        app:layout_constraintEnd_toEndOf="@+id/textViewLike"
-        app:layout_constraintStart_toStartOf="@+id/textViewLike"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLike"
+        app:layout_constraintEnd_toEndOf="@+id/txtLike"
+        app:layout_constraintStart_toStartOf="@+id/txtLike"
+        app:layout_constraintTop_toBottomOf="@+id/txtLike"
         app:srcCompat="@drawable/ic_thumb_up_black_24dp" />
 
     <TextView
-        android:id="@+id/textViewDislike"
+        android:id="@+id/txtDislike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -45,15 +45,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageViewDislike"
+        android:id="@+id/imgDislike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:clickable="true"
-        app:layout_constraintEnd_toEndOf="@+id/textViewDislike"
-        app:layout_constraintHorizontal_bias="0.384"
-        app:layout_constraintStart_toStartOf="@+id/textViewDislike"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDislike"
+        app:layout_constraintEnd_toEndOf="@+id/txtDislike"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/txtDislike"
+        app:layout_constraintTop_toBottomOf="@+id/txtDislike"
         app:srcCompat="@drawable/ic_thumb_down_black_24dp" />
+
+    <Button
+        android:id="@+id/btnClr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Clear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="clearData"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,34 +5,44 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    //Module-level variable
+
     lateinit var countViewModel: CountViewModel
-    //Create an instance of the Shared Preferences
+
     lateinit var sharedPreferences: SharedPreferences
+
+    lateinit var imglike:ImageView
+    lateinit var imgdislike:ImageView
+    lateinit var txtlike:TextView
+    lateinit var txtdislike:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Initialise the ViewModel
         countViewModel = ViewModelProviders.of(this).get(CountViewModel::class.java)
 
-        //Initialise the Shared Preferences
         sharedPreferences = getPreferences(Context.MODE_PRIVATE)
 
+        imglike=findViewById(R.id.imgLike)
+        imgdislike=findViewById(R.id.imgDislike)
+        txtlike=findViewById(R.id.txtLike)
+        txtdislike=findViewById(R.id.txtDislike)
 
-        imageViewLike.setOnClickListener {
+        imglike.setOnClickListener {
             countViewModel.countLike++
-            textViewLike.text = countViewModel.countLike.toString()
+            txtlike.text = countViewModel.countLike.toString()
         }
 
-        imageViewDislike.setOnClickListener {
+        imgdislike.setOnClickListener {
             countViewModel.countDislike++
-            textViewDislike.text = countViewModel.countDislike.toString()
+            txtdislike.text = countViewModel.countDislike.toString()
         }
     }
 
@@ -43,12 +53,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         Log.d("MainActivity" , "onResume")
-        countViewModel.countLike =
-            sharedPreferences.getInt(getString(R.string.like), 0)//retrive value
-        countViewModel.countDislike =
-            sharedPreferences.getInt(getString(R.string.dislike), 0)
-        textViewLike.text = countViewModel.countLike.toString()
-        textViewDislike.text = countViewModel.countDislike.toString()
+        countViewModel.countLike = sharedPreferences.getInt(getString(R.string.like), 0)//retrieve value
+
+        countViewModel.countDislike = sharedPreferences.getInt(getString(R.string.dislike), 0)
+
+        txtlike.text = countViewModel.countLike.toString()
+        txtdislike.text = countViewModel.countDislike.toString()
         super.onResume()
     }
 
@@ -70,5 +80,12 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         Log.d("MainActivity" , "onDestroy")
         super.onDestroy()
+    }
+
+    fun clearData(v: View){
+        countViewModel.countLike = 0
+        txtlike.text = countViewModel.countLike.toString()
+        countViewModel.countDislike = 0
+        txtdislike.text = countViewModel.countDislike.toString()
     }
 }
